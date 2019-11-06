@@ -27,7 +27,7 @@ namespace StickmanShankSimulator.Physics
             Velocity.Y += Mass * Gravity * deltaTime;
             if (Position.Y >= Height)
                 Velocity.Y = 0;
-            Position.Y += Velocity.Y;
+            Position.Y += Velocity.Y * deltaTime;
             if (Position.Y > Height)
                 Position.Y = Height;
             if (Position.Y < Height)

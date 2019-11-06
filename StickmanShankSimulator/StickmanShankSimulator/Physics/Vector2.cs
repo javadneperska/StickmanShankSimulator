@@ -18,7 +18,17 @@ namespace StickmanShankSimulator.Physics
 
         public float Distance(Vector2 b)
         {
-            return (float)Math.Sqrt(Math.Pow(b.X - X, 2) - Math.Pow(b.Y - Y, 2));
+            return (float)Math.Sqrt(Math.Pow(b.X - X, 2) + Math.Pow(b.Y - Y, 2));
+        }
+
+        public float Length()
+        {
+            return (float)Math.Sqrt(Math.Pow(X, 2) + Math.Pow(Y, 2));
+        }
+
+        public Vector2 Normalize()
+        {
+            return this / this.Length();
         }
 
         public static Vector2 operator -(Vector2 a, Vector2 b)
@@ -34,6 +44,10 @@ namespace StickmanShankSimulator.Physics
         public static Vector2 operator +(Vector2 a, Vector2 b)
         {
             return new Vector2(a.X + b.X, a.Y + b.Y);
+        }
+        public static Vector2 operator /(Vector2 a, float b)
+        {
+            return new Vector2(a.X / b, a.Y / b);
         }
     }
 }

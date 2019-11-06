@@ -13,11 +13,12 @@ namespace StickmanShankSimulator.Physics
         public readonly float Length, Strength, SidewaysBias;
         public readonly RigidBodyStatus Status;
 
-        public RigidBody(Node a, Node b, float str, float sideways = 1, RigidBodyStatus status = RigidBodyStatus.Extending)
+        public RigidBody(Node a, Node b, float str, float sideways = 5, RigidBodyStatus status = RigidBodyStatus.Extending)
         {
             A = a;
             B = b;
             Length = A.Position.Distance(B.Position);
+            Console.WriteLine("len: " + Length);
             Strength = str;
             Status = status;
         }
@@ -36,15 +37,29 @@ namespace StickmanShankSimulator.Physics
 
             if (Status == RigidBodyStatus.Extending)
             {
+                /*if (A.Velocity.Length() == 0)
+                {
+                    B.Velocity -= B.Velocity.Normalize() * (B.Velocity.Length() > Strength ? Strength : B.Velocity.Length());
+                }
+                if (B.Velocity.Length() == 0)
+                {
+                    A.Velocity -= A.Velocity.Normalize() * (A.Velocity.Length() > Strength ? Strength : A.Velocity.Length());
+                }*/
                 if (distance < Length)
                 {
                     float delta = Length - distance;
-                    B.Position += (B.Position - A.Position) * (delta > Strength ? Strength : delta);
+                    Vector2 action = (B.Position - A.Position).Normalize() * (delta > Strength ? Strength : delta);
+                    B.Position += action;
+                    B.Velocity.Y -= B.Velocity.Y > action.Y ? action.Y*2 : B.Velocity.Y;
+                    A.Velocity.Y -= A.Velocity.Y > action.Y ? action.Y*2 : A.Velocity.Y;
                 }
                 if (distance > Length)
                 {
-                    float delta = Length - distance;
-                    B.Position -= (B.Position - A.Position) * (delta > Strength ? Strength : delta);
+                    float delta = -(Length - distance);
+                    Vector2 action = (B.Position - A.Position).Normalize() * (delta > Strength ? Strength : delta);
+                    B.Position -= action;
+                    B.Velocity.Y -= B.Velocity.Y > action.Y ? action.Y*2 : B.Velocity.Y;
+                    A.Velocity.Y -= A.Velocity.Y > action.Y ? action.Y*2 : A.Velocity.Y;
                 }
             }
             if (Status == RigidBodyStatus.Contracting)

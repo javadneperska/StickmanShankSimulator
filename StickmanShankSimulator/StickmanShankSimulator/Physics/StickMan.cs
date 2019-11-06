@@ -15,28 +15,28 @@ namespace StickmanShankSimulator.Physics
 
         public StickMan(float X, float Y, float scale = 1)
         {
-            Waist = new Node(X, Y, 10);
-            L_Knee = new Node(Waist.Position.X - (10 * scale), Waist.Position.Y + (25 * scale), 10);
-            R_Knee = new Node(Waist.Position.X + (10 * scale), Waist.Position.Y + (25 * scale), 10);
-            L_Foot = new Node(L_Knee.Position.X, L_Knee.Position.Y + (25 * scale), 10);
-            R_Foot = new Node(R_Knee.Position.X, R_Knee.Position.Y + (25 * scale), 10);
-            Chest = new Node(Waist.Position.X, Waist.Position.Y - (35 * scale), 10);
-            L_Elbow = new Node(Chest.Position.X - (20 * scale), Chest.Position.Y + (15 * scale), 10);
-            R_Elbow = new Node(Chest.Position.X + (20 * scale), Chest.Position.Y + (15 * scale), 10);
-            L_Hand = new Node(L_Elbow.Position.X, L_Elbow.Position.Y + (20 * scale), 10);
-            R_Hand = new Node(R_Elbow.Position.X, R_Elbow.Position.Y + (20 * scale), 10);
-            Head = new Node(Chest.Position.X, Chest.Position.Y - (10 * scale), 10);
+            Waist = new Node(X, Y, 1);
+            L_Knee = new Node(Waist.Position.X - (10 * scale), Waist.Position.Y + (25 * scale), 1);
+            R_Knee = new Node(Waist.Position.X + 5 + (10 * scale), Waist.Position.Y + (25 * scale), 1);
+            L_Foot = new Node(L_Knee.Position.X, L_Knee.Position.Y + (25 * scale), 1);
+            R_Foot = new Node(R_Knee.Position.X - 5, R_Knee.Position.Y - 5 + (25 * scale), 1);
+            Chest = new Node(Waist.Position.X, Waist.Position.Y - (35 * scale), 1);
+            L_Elbow = new Node(Chest.Position.X - (20 * scale), Chest.Position.Y + (15 * scale), 1);
+            R_Elbow = new Node(Chest.Position.X + (20 * scale), Chest.Position.Y + (15 * scale), 1);
+            L_Hand = new Node(L_Elbow.Position.X, L_Elbow.Position.Y + (20 * scale), 1);
+            R_Hand = new Node(R_Elbow.Position.X, R_Elbow.Position.Y + (20 * scale), 1);
+            Head = new Node(Chest.Position.X, Chest.Position.Y - (10 * scale), 1);
 
-            L_Calf = new RigidBody(L_Foot, L_Knee, 3.5f);
-            R_Calf = new RigidBody(R_Foot, R_Knee, 3.5f);
-            L_Thigh = new RigidBody(L_Knee, Waist, 3.5f);
-            R_Thigh = new RigidBody(R_Knee, Waist, 3.5f);
-            Trunk = new RigidBody(Waist, Chest, 3.5f);
-            L_Biceps = new RigidBody(Chest, L_Elbow, 3.5f);
-            R_Biceps = new RigidBody(Chest, R_Elbow, 3.5f);
-            L_Forearm = new RigidBody(L_Elbow, L_Hand, 3.5f);
-            R_Forearm = new RigidBody(R_Elbow, R_Hand, 3.5f);
-            Neck = new RigidBody(Head, Chest, 3.5f);
+            L_Calf = new RigidBody(L_Foot, L_Knee, 0.75f);
+            R_Calf = new RigidBody(R_Foot, R_Knee, 0.75f);
+            L_Thigh = new RigidBody(L_Knee, Waist, 0.55f);
+            R_Thigh = new RigidBody(R_Knee, Waist, 0.55f);
+            Trunk = new RigidBody(Waist, Chest, 1.5f);
+            L_Biceps = new RigidBody(Chest, L_Elbow, 1.0f);
+            R_Biceps = new RigidBody(Chest, R_Elbow, 1.0f);
+            L_Forearm = new RigidBody(L_Elbow, L_Hand, 0.5f);
+            R_Forearm = new RigidBody(R_Elbow, R_Hand, 0.5f);
+            Neck = new RigidBody(Chest, Head, 0.5f);
 
             Scale = scale;
         }

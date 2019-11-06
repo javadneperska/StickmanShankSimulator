@@ -13,7 +13,7 @@ namespace StickmanShankSimulator
 {
     public partial class Form1 : Form
     {
-        StickMan stick = new StickMan(500, 450, 0.75f);
+        StickMan stick = new StickMan(500, 300, 0.75f);
         public Form1()
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace StickmanShankSimulator
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            stick.Update(0.1f);
+            stick.Update(0.01f);
             this.Refresh();
         }
     }
