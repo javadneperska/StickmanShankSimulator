@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace StickmanShankSimulator.Physics
 {
-    class Node
+    struct Vector2
     {
-        public Vector2 Position;
-        public float Friction, Mass;
+        public float X, Y;
 
-        public void Update(float deltaTime)
+        public float Distance(Vector2 b)
         {
-
+            return (float)Math.Sqrt(Math.Pow(b.X - X, 2) - Math.Pow(b.Y - Y, 2));
         }
     }
 }
