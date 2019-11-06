@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,14 @@ namespace StickmanShankSimulator.Physics
             B.Update(deltaTime);
 
             float distance = A.Position.Distance(B.Position);
+        }
+
+        public void Draw(Graphics cancer)
+        {
+            Pen pen = Pens.Black;
+            pen.Width = 10;
+
+            cancer.DrawLine(pen, A.Position.X, A.Position.Y, B.Position.X, B.Position.Y);
         }
     }
 }
