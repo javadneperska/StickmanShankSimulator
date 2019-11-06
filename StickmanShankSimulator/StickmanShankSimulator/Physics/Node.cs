@@ -11,6 +11,14 @@ namespace StickmanShankSimulator.Physics
         public Vector2 Position;
         public float Friction, Mass;
 
+        public Node(float X, float Y, int mass)
+        {
+            Position.X = X;
+            Position.Y = Y;
+            Friction = 0;
+            Mass = mass;
+        }
+
         public void Update(float deltaTime)
         {
 

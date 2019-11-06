@@ -13,6 +13,12 @@ namespace StickmanShankSimulator.Physics
         public float Length, Strength, SidewaysBias;
         RigidBodyStatus Status;
 
+        public RigidBody(Node a, Node b)
+        {
+            A = a;
+            B = b;
+        }
+
         public void Update(float deltaTime)
         {
             A.Update(deltaTime);
@@ -23,8 +29,8 @@ namespace StickmanShankSimulator.Physics
 
         public void Draw(Graphics cancer)
         {
-            Pen pen = Pens.Black;
-            pen.Width = 10;
+            Pen pen = new Pen(Color.Black);
+            pen.Width = 3;
 
             cancer.DrawLine(pen, A.Position.X, A.Position.Y, B.Position.X, B.Position.Y);
         }
