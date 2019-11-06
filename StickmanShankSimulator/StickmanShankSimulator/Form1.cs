@@ -20,7 +20,7 @@ namespace StickmanShankSimulator
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            StickMan stick = new StickMan(500, 200,0.5f);
+            StickMan stick = new StickMan(500, 200,0.75f);
             stick.Draw(e.Graphics);
         }
     }

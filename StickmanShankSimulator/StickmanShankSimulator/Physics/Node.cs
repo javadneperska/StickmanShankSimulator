@@ -17,7 +17,6 @@ namespace StickmanShankSimulator.Physics
         {
             Position.X = X;
             Position.Y = Y;
-            Friction = 0;
             Mass = mass;
         }
 
