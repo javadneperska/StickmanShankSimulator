@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace StickmanShankSimulator.Physics
 {
-    struct Vector3
+    enum RigidBodyStatus
     {
-        public float X, Y, Z;
+        Contracting,
+        Extending,
+        Idle
     }
 }
