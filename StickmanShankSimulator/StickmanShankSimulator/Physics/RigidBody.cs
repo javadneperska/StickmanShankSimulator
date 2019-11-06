@@ -10,13 +10,16 @@ namespace StickmanShankSimulator.Physics
     class RigidBody
     {
         public Node A, B;
-        public float Length, Strength, SidewaysBias;
-        RigidBodyStatus Status;
+        public readonly float Length, Strength, SidewaysBias;
+        public readonly RigidBodyStatus Status;
 
-        public RigidBody(Node a, Node b)
+        public RigidBody(Node a, Node b, float str, float sideways = 1, RigidBodyStatus status = RigidBodyStatus.Extending)
         {
             A = a;
             B = b;
+            Length = A.Position.Distance(B.Position);
+            Strength = str;
+            Status = status;
         }
 
         public void Update(float deltaTime)
@@ -38,6 +41,11 @@ namespace StickmanShankSimulator.Physics
                     float delta = Length - distance;
                     B.Position += (B.Position - A.Position) * (delta > Strength ? Strength : delta);
                 }
+                if (distance > Length)
+                {
+                    float delta = Length - distance;
+                    B.Position -= (B.Position - A.Position) * (delta > Strength ? Strength : delta);
+                }
             }
             if (Status == RigidBodyStatus.Contracting)
             {
@@ -56,12 +64,12 @@ namespace StickmanShankSimulator.Physics
             }
         }
 
-        public void Draw(Graphics cancer)
+        public void Draw(Graphics g)
         {
             Pen pen = new Pen(Color.Black);
             pen.Width = 3;
 
-            cancer.DrawLine(pen, A.Position.X, A.Position.Y, B.Position.X, B.Position.Y);
+            g.DrawLine(pen, A.Position.X, A.Position.Y, B.Position.X, B.Position.Y);
         }
     }
 }

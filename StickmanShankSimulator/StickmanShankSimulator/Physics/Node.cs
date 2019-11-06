@@ -9,7 +9,9 @@ namespace StickmanShankSimulator.Physics
     class Node
     {
         private const float Gravity = 0.981f;
+        private const int Height = 500;
         public Vector2 Position;
+        public Vector2 Velocity;
         public float Mass;
         public bool HasDrag;
 
@@ -22,9 +24,14 @@ namespace StickmanShankSimulator.Physics
 
         public void Update(float deltaTime)
         {
-            Position.Y += Mass * Gravity * deltaTime;
-            if (Position.Y > 720)
-                Position.Y = 720;
+            Velocity.Y += Mass * Gravity * deltaTime;
+            if (Position.Y >= Height)
+                Velocity.Y = 0;
+            Position.Y += Velocity.Y;
+            if (Position.Y > Height)
+                Position.Y = Height;
+            if (Position.Y < Height)
+                HasDrag = true;
         }
     }
 }
