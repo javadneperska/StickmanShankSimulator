@@ -52,6 +52,10 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Physics\Node.cs" />
+    <Compile Include="Physics\RigidBody.cs" />
+    <Compile Include="Physics\StickMan.cs" />
+    <Compile Include="Physics\Vector3.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
